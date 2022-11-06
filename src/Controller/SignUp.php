@@ -34,24 +34,25 @@ class SignUp extends AbstractController
                 ]);
             }
 
+            // Reset message every time
+
+            if($pwd == null){
+                $errorMessage = '';
+                return $this->render('signup.html.twig', [
+                    'error' => $errorMessage,
+                ]);
+            }
+
             if($pwd == $pwd_c){
-
-                $query = $mysqli->prepare("SELECT ID FROM NetflixClone.Users WHERE ID = ?");
-                $query->bind_param("s", $id);
-                $query->execute();
-                $result = $query->get_result();
-
-                if($result == false){
-                    $hashpwd = password_hash($pwd, PASSWORD_DEFAULT);
-                    $stmt->bind_param("ss", $id, $hashpwd);
-                    $stmt->execute();
-                }
-                else{
-                    $errorMessage = 'User already exist';
-                    return $this->render('signup.html.twig', [
-                        'error' => $errorMessage,
-                    ]);
-                }
+                $hashpwd = password_hash($pwd, PASSWORD_DEFAULT);
+                $stmt->bind_param("ss", $id, $hashpwd);
+                $stmt->execute();
+                $errorMessage = 'Registered';
+                return $this->render('signup.html.twig', [
+                    'error' => $errorMessage,
+                ]);
+                header('Location: /homepage');
+                die();
             }
             else{
                 $errorMessage = 'Passwords Don\'t Match';

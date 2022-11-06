@@ -34,7 +34,8 @@ class Login extends AbstractController
             else{
                 while($row = $result->fetch_assoc()){
                     if(password_verify($pwd, $row['PWD'])){
-                        echo 'Password Correct';
+                        header('Location: /homepage');
+                        die();
                     }
                     else{
                         $errorMessage = 'Password Incorrect';
