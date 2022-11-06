@@ -1,7 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\Login::loginFunction
 
 login:
   path: /login
   controller: App\Controller\Login::loginFunction
+
+signup:
+  path: /sign-up
+  controller: App\Controller\SignUp::signupFunction
