@@ -5,3 +5,7 @@ index:
 login:
   path: /login
   controller: App\Controller\Login::loginFunction
+
+signup:
+  path: /sign-up
+  controller: App\Controller\SignUp::signupFunction

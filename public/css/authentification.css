@@ -139,6 +139,10 @@ img {
 	text-decoration: underline;
 }
 
+a:hover {
+	color: #3ea6ff;
+}
+
 /* ------ input ------- */
 
 input[type=checkbox] {

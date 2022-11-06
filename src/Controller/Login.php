@@ -10,10 +10,9 @@ class Login extends AbstractController
 {
     public function loginFunction(): Response
     {
-        $hello = 'Hello World!';
         $errorMessage = '';
 
-        $mysqli = new mysqli("127.0.0.1", "rl242", "31#Nigi2", "LoginSystem");
+        $mysqli = new mysqli("127.0.0.1", "rl242", "31#Nigi2", "NetflixClone");
 
         if($mysqli === false){
             die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -50,7 +49,6 @@ class Login extends AbstractController
         // Must return something to skip Response Error
 
         return $this->render('login.html.twig', [
-            'hello' => $hello,
             'error' => $errorMessage,
         ]);
     }
