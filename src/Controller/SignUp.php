@@ -47,11 +47,9 @@ class SignUp extends AbstractController
                 $hashpwd = password_hash($pwd, PASSWORD_DEFAULT);
                 $stmt->bind_param("ss", $id, $hashpwd);
                 $stmt->execute();
-                $errorMessage = 'Registered';
-                return $this->render('signup.html.twig', [
-                    'error' => $errorMessage,
-                ]);
-                header('Location: /homepage');
+
+                header('Location: /login');
+                mysqli_close($mysqli);
                 die();
             }
             else{
