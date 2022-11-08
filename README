@@ -1,0 +1,49 @@
+### Licence
+
+I DO NOT OWN ANYTHING FROM THE COMPANY "NETFLIX", ALL YOU CAN SEE IN THE "CLONE" WEBSITE THAT I CREATED IS NOT RELATED TO NETFLIX.
+IT WAS NOT CREATED BY NETFLIX.
+
+### Requirements
+
+Symfony 5.4.13 | composer require symfony/asset
+Composer 2.2.5
+PHP 7.4.3
+MySQL 8.0.30
+Linux (Ubuntu 20.04)
+
+### Usage
+
+Clone
+
+    GIT 
+
+    "git clone https://github.com/Rl242Dev/NetflixClone"
+    -> cd NetflixClone
+
+You will be in the main folder
+
+--------------------------------------
+SQL Setup
+
+    SQL
+
+In the "SQL" Folder -> db.sql to build the database.
+
+    cd sql
+    mysql -u user -p < db.sql
+    (Log in and then quit ->)
+    quit
+    cd ..
+
+The main database will be setup
+
+-------------------------------------
+Symfony Server
+
+    symfony server:start
+    
+follow the link to a localhost server 
+eg:
+
+    [PHP        ] [Tue Nov  8 21:25:41 2022] PHP 7.4.3 Development Server (http://127.0.0.1:39243) started
+
