@@ -44,11 +44,11 @@ class Login extends AbstractController
                             $_SESSION['id'] = $id;
                             $_SESSION['pwd'] = $pwd;
 
-                            header('Location: /homepage');
+                            header('Location: /profils');
                             mysqli_close($mysqli);
                             die();
                         }else{
-                            header('Location: /homepage');
+                            header('Location: /profils');
                             mysqli_close($mysqli);
                             die();
                         }

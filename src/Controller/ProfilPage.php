@@ -6,21 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use mysqli;
 
-class Homepage extends AbstractController
+class ProfilPage extends AbstractController
 {
-    public function browseFunction(): Response
+
+    public function profilFunction(): Response
     {
         session_start();
 
-        if(session_id() == '') {
-            header('Location: /login');
-            die();
-        }
+        $id = $_SESSION['id'];
 
         $errorMessage = '';
+        // Must return something to skip Response Error
 
-        return $this->render('homepage.html.twig', [
+        return $this->render('ProfilPage.html.twig', [
             'error' => $errorMessage,
+            'id' => $id,
         ]);
     }
 }

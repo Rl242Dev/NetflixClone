@@ -20,6 +20,7 @@ class SignUp extends AbstractController
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt = $mysqli->prepare("INSERT INTO NetflixClone.Users (ID, PWD) VALUES (?, ?)");
+            $profilstmt = $mysqli->prepare("INSERT INTO NetflixClone.Profils (ID, NumberProfil, ProfilOne, ProfilTwo, ProfilThree, ProfilFour) VALUES (?, ?, ?, ?, ?, ?)");
 
             $pwd = $_POST["pwd"];
             $pwd_c = $_POST["pwd-c"];

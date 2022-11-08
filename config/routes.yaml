@@ -13,3 +13,7 @@ signup:
 homepage:
   path: /homepage
   controller: App\Controller\Homepage::browseFunction
+
+profil:
+  path: /profils
+  controller: App\Controller\ProfilPage::profilFunction
