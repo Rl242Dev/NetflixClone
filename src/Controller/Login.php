@@ -29,12 +29,29 @@ class Login extends AbstractController
 
             $result = $stmt->get_result();
             if($result == false){
-                echo 'User Doesn\'t exist';
+                $errorMessage = 'User Doesn\'t exist';
+                return $this->render('login.html.twig', [
+                    'error' => $errorMessage,
+                ]);
             }
             else{
                 while($row = $result->fetch_assoc()){
                     if(password_verify($pwd, $row['PWD'])){
-                        echo 'Password Correct';
+                        if(session_id() == '') {
+                            session_start();
+
+                            $_SESSION['islogged'] = true;
+                            $_SESSION['id'] = $id;
+                            $_SESSION['pwd'] = $pwd;
+
+                            header('Location: /profils');
+                            mysqli_close($mysqli);
+                            die();
+                        }else{
+                            header('Location: /profils');
+                            mysqli_close($mysqli);
+                            die();
+                        }
                     }
                     else{
                         $errorMessage = 'Password Incorrect';

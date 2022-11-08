@@ -20,6 +20,7 @@ class SignUp extends AbstractController
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt = $mysqli->prepare("INSERT INTO NetflixClone.Users (ID, PWD) VALUES (?, ?)");
+            $profilstmt = $mysqli->prepare("INSERT INTO NetflixClone.Profils (ID, NumberProfil, ProfilOne, ProfilTwo, ProfilThree, ProfilFour) VALUES (?, ?, ?, ?, ?, ?)");
 
             $pwd = $_POST["pwd"];
             $pwd_c = $_POST["pwd-c"];
@@ -34,24 +35,23 @@ class SignUp extends AbstractController
                 ]);
             }
 
+            // Reset message every time
+
+            if($pwd == null){
+                $errorMessage = '';
+                return $this->render('signup.html.twig', [
+                    'error' => $errorMessage,
+                ]);
+            }
+
             if($pwd == $pwd_c){
+                $hashpwd = password_hash($pwd, PASSWORD_DEFAULT);
+                $stmt->bind_param("ss", $id, $hashpwd);
+                $stmt->execute();
 
-                $query = $mysqli->prepare("SELECT ID FROM NetflixClone.Users WHERE ID = ?");
-                $query->bind_param("s", $id);
-                $query->execute();
-                $result = $query->get_result();
-
-                if($result == false){
-                    $hashpwd = password_hash($pwd, PASSWORD_DEFAULT);
-                    $stmt->bind_param("ss", $id, $hashpwd);
-                    $stmt->execute();
-                }
-                else{
-                    $errorMessage = 'User already exist';
-                    return $this->render('signup.html.twig', [
-                        'error' => $errorMessage,
-                    ]);
-                }
+                header('Location: /login');
+                mysqli_close($mysqli);
+                die();
             }
             else{
                 $errorMessage = 'Passwords Don\'t Match';

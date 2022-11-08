@@ -1,6 +1,6 @@
-index:
+landing: #Will be landing page
     path: /
-    controller: App\Controller\Login::loginFunction
+    controller: App\Controller\Landing::landingFunction
 
 login:
   path: /login
@@ -9,3 +9,11 @@ login:
 signup:
   path: /sign-up
   controller: App\Controller\SignUp::signupFunction
+
+homepage:
+  path: /homepage
+  controller: App\Controller\Homepage::browseFunction
+
+profil:
+  path: /profils
+  controller: App\Controller\ProfilPage::profilFunction
