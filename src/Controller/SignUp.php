@@ -20,7 +20,6 @@ class SignUp extends AbstractController
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt = $mysqli->prepare("INSERT INTO NetflixClone.Users (ID, PWD) VALUES (?, ?)");
-            $profilstmt = $mysqli->prepare("INSERT INTO NetflixClone.Profils (ID, NumberProfil, ProfilOne, ProfilTwo, ProfilThree, ProfilFour) VALUES (?, ?, ?, ?, ?, ?)");
 
             $pwd = $_POST["pwd"];
             $pwd_c = $_POST["pwd-c"];
@@ -33,6 +32,7 @@ class SignUp extends AbstractController
                 return $this->render('signup.html.twig', [
                     'error' => $errorMessage,
                 ]);
+                mysqli_close($mysqli);
             }
 
             // Reset message every time
@@ -42,6 +42,14 @@ class SignUp extends AbstractController
                 return $this->render('signup.html.twig', [
                     'error' => $errorMessage,
                 ]);
+                mysqli_close($mysqli);
+            }
+            if(strlen($pwd) < 6){
+                $errorMessage = 'Password Lenght must be over 6 caracters';
+                return $this->render('signup.html.twig', [
+                    'error' => $errorMessage,
+                ]);
+                mysqli_close($mysqli);
             }
 
             if($pwd == $pwd_c){
@@ -58,6 +66,7 @@ class SignUp extends AbstractController
                 return $this->render('signup.html.twig', [
                     'error' => $errorMessage,
                 ]);
+                mysqli_close($mysqli);
             }
         }
 
