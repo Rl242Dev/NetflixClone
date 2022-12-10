@@ -58,6 +58,7 @@ class Login extends AbstractController
                         return $this->render('login.html.twig', [
                             'error' => $errorMessage,
                         ]);
+                        mysqli_close($mysqli);
                     };
                 }
             }
